@@ -83,10 +83,9 @@ else
 fi
 
 cd "$FEATURE"
-mkdir -p logs
 sbatch slurm/run.sh
 squeue --me
-echo "Submitted $FEATURE (branch $BRANCH). Logs: {REPOS_ROOT}/{COMMANDS_DIR}/$FEATURE/logs/"
+echo "Submitted $FEATURE (branch $BRANCH). Output .out file appears in this folder."
 """
 
 
@@ -156,7 +155,7 @@ def build_bundle(feature="custom", user="mayur", gpus=None, time=None,
         f"{root}/scripts/local_setup.sh": _local_setup(job_dir, remote, branch),
         f"{root}/scripts/hpc_pull_run.sh": _hpc_pull_run(job_dir, remote, branch),
         f"{root}/configs/default.yaml": f"# {feature} config\n",
-        f"{root}/.gitignore": "data/\nlogs/\n*.ckpt\n__pycache__/\n*.pyc\n",
+        f"{root}/.gitignore": "data/\nlogs/\n*.out\n*.ckpt\n__pycache__/\n*.pyc\n",
     }
 
     buf = io.BytesIO()

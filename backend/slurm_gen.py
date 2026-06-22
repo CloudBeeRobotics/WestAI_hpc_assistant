@@ -120,7 +120,7 @@ def generate_script(user="mayur", mode="production", gpus=1,
 {gres_line}
 #SBATCH --cpus-per-task={cpus}
 #SBATCH --time={time}
-#SBATCH --output=logs/{uname}_{prefix}_%j.out
+#SBATCH --output={uname}_{prefix}_%j.out
 
 echo "=== Job $SLURM_JOB_ID on $(hostname) | start $(date) ==="
 
